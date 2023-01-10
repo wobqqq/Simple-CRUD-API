@@ -1,6 +1,49 @@
 {
   "name": "simple-crud-api",
   "version": "1.0.0",
-  "description": ""
+  "description": "",
+  "scripts": {
+    "start:dev": "cross-env CLUSTER_MODE=off nodemon",
+    "start:prod": "webpack && cross-env CLUSTER_MODE=off node ./dist/bundle.js",
+    "start:multi": "webpack && cross-env CLUSTER_MODE=on node ./dist/bundle.js",
+    "test": "cross-env CLUSTER_MODE=off jest --verbose --silent --config ./jestconfig.json",
+    "code:style:fix": "eslint --fix .",
+    "code:style:analyse": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wobqqq/Simple-CRUD-API.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wobqqq/Simple-CRUD-API/issues"
+  },
+  "homepage": "https://github.com/wobqqq/Simple-CRUD-API#readme",
+  "dependencies": {
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.0.3",
+    "ts-loader": "^9.4.2",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.4",
+    "@types/node": "^18.11.18",
+    "@types/supertest": "^2.0.12",
+    "@types/uuid": "^9.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.47.1",
+    "@typescript-eslint/parser": "^5.47.1",
+    "eslint": "^8.30.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "nodemon": "^2.0.20",
+    "supertest": "^6.3.3",
+    "ts-jest": "^29.0.3",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.4",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
+  }
 }
-
