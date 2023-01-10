@@ -10,7 +10,7 @@ const config = {
   resolve: {
     extensions: [
       '.ts',
-      '.js'
+      '.js',
     ],
   },
   target: 'node',
