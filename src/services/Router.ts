@@ -24,11 +24,21 @@ export class Router {
   public findRoute(requestMethod: string, requestUrl: string): IRoute | null {
     const requestUrlSegments = parseUrlToSegments(requestUrl);
     const route = [...this.routes]
-      .map((item) => Router.compareWithRoute(requestUrlSegments, requestMethod, item))
-      .filter((item) => item)
-      .shift();
+      .find((item) => Router.compareWithRoute(requestUrlSegments, requestMethod, item));
 
     return route ?? null;
+  }
+
+  private push(url: string, method: string, controller: string): void {
+    const [className, methodName] = controller.split('@');
+    const route = {
+      url,
+      method,
+      className,
+      methodName,
+    };
+
+    this.routes.push(route);
   }
 
   private static compareWithRoute(
@@ -45,7 +55,7 @@ export class Router {
       return null;
     }
 
-    const slugs: any = {};
+    const slugs: { [key: string]: string } = {};
     const newRequestUrlSegments: string[] = [];
 
     routeUrlSegments.forEach((item, i) => {
@@ -69,18 +79,6 @@ export class Router {
     }
 
     return Object.assign(route, { slugs });
-  }
-
-  private push(url: string, method: string, controller: string): void {
-    const [className, methodName] = controller.split('@');
-    const route = {
-      url,
-      method,
-      className,
-      methodName,
-    };
-
-    this.routes.push(route);
   }
 }
 

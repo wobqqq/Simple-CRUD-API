@@ -42,7 +42,7 @@ class Validator {
       throw new ValidationError(error.message);
     }
 
-    return errors;
+    return errors ?? [];
   }
 
   private static checkEachField(
